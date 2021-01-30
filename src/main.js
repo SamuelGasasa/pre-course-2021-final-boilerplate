@@ -2,8 +2,11 @@ const button=document.getElementById('add-button');
 button.addEventListener('click', Add);
 const ViewSection=document.getElementById('view-section');
 const input=document.getElementById('text-input');
-// let nano=new Date();
-// alert(nano.getDate());
+let nano=new Date();
+alert(nano.getSeconds());
+let counter=0;
+
+
 function Add(){
     let containerDiv=document.createElement('div');
     containerDiv.classList.add('todo-container');
@@ -25,11 +28,12 @@ function Add(){
     input.value='';
     input.focus();
     // alert();
+    counter++;
 }
 
-
+// create SQL date format
 function createDate(date) {
     let newDate;
-    newDate=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+    newDate=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+ date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
     return newDate;
 }
