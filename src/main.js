@@ -2,6 +2,8 @@ const button=document.getElementById('add-button');
 button.addEventListener('click', Add);
 const ViewSection=document.getElementById('view-section');
 const input=document.getElementById('text-input');
+// let nano=new Date();
+// alert(nano.getDate());
 function Add(){
     let containerDiv=document.createElement('div');
     containerDiv.classList.add('todo-container');
@@ -14,7 +16,7 @@ function Add(){
     let inputText=input.value;
     textDiv.innerText=inputText;
     let date=new Date();
-    dateDiv.innerText=date;
+    dateDiv.innerText=createDate(date);
     priorityDiv.innerText=document.getElementById('priority-selector').value;
     ViewSection.append(containerDiv);
     containerDiv.append(textDiv);
@@ -23,4 +25,11 @@ function Add(){
     input.value='';
     input.focus();
     // alert();
+}
+
+
+function createDate(date) {
+    let newDate;
+    newDate=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+    return newDate;
 }
