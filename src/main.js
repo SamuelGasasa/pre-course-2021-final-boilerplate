@@ -2,6 +2,7 @@ const button=document.getElementById('add-button');
 button.addEventListener('click', Add);
 const ViewSection=document.getElementById('view-section');
 const input=document.getElementById('text-input');
+const counterDive=document.getElementById('counter');
 let nano=new Date();
 alert(nano.getSeconds());
 let counter=0;
@@ -29,6 +30,8 @@ function Add(){
     input.focus();
     // alert();
     counter++;
+    counterDive.innerText=counter;
+
 }
 
 // create SQL date format
