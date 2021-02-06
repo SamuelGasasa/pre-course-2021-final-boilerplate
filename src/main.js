@@ -9,7 +9,7 @@ sortButton.addEventListener('click',sortList)
 // let nano=new Date();
 // alert(nano.getSeconds());
 let counter=0;
-
+let arr=[];
 
 function addToList(){
     let li=document.createElement('li');
@@ -24,8 +24,10 @@ function addToList(){
     let inputText=input.value;
     textDiv.innerText=inputText;
     let date=new Date();
-    dateDiv.innerText=createDate(date);
-    priorityDiv.innerText=document.getElementById('priority-selector').value;
+    let tarich=createDate(date);
+    dateDiv.innerText=tarich;
+    let prio=document.getElementById('priority-selector').value;
+    priorityDiv.innerText=prio;
     ViewSection.append(containerDiv);
     containerDiv.append(priorityDiv);
     containerDiv.append(dateDiv);
@@ -37,7 +39,14 @@ function addToList(){
     counterDiv.innerText='TODO: '+counter;
     li.append(containerDiv);
     list.append(li);
-
+    let obj={
+      "text":inputText,
+      "priority":prio,
+      "date":tarich
+    }
+    arr.push(obj);
+    localStorage.setItem('my-todo',JSON.stringify(arr));
+    
 }
 
 // create SQL date format
@@ -81,3 +90,35 @@ function sortList(){
       }
     }
 }
+
+// test
+//   let newArr=[
+//       {
+//           "text": 'An example to-do',
+//           "priority": "1",
+//           "date": 1611662776177
+//       },
+//       {
+//           "text": "A second example to-do",
+//           "priority": "4",
+//           "date": 1611661776177
+//       }
+//   ]
+
+  
+//   localStorage.setItem('local',JSON.stringify(newArr));
+//   let stam=localStorage.getItem('local');
+//   let js=JSON.parse(stam);
+//   console.log(js);
+// //   for(var i =0; i < localStorage.length; i++){
+// //     console.log(localStorage.getItem(localStorage.key(i)[text]));
+// //  }
+//   // console.log(newArr[0].text);
+
+
+
+
+
+
+
+// end of test
