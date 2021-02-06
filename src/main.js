@@ -10,6 +10,7 @@ sortButton.addEventListener('click',sortList)
 // alert(nano.getSeconds());
 let counter=0;
 
+
 function addToList(){
     let li=document.createElement('li');
     let textDiv=document.createElement('div');;
@@ -33,7 +34,7 @@ function addToList(){
     input.focus();
     // alert();
     counter++;
-    counterDiv.innerText=counter;
+    counterDiv.innerText='TODO: '+counter;
     li.append(containerDiv);
     list.append(li);
 
@@ -45,7 +46,7 @@ function createDate(date) {
     newDate=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+ date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
     return newDate;
 }
-
+// taken!
 function sortList(){
     let i, switching, b, shouldSwitch;
     // list = document.getElementById("id01");
