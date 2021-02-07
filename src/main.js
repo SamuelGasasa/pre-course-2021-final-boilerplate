@@ -13,6 +13,7 @@ let arr=[];
 
 function addToList(){
     let li=document.createElement('li');
+    li.classList.add('pane');
     let textDiv=document.createElement('div');;
     let containerDiv=document.createElement('div');
     let dateDiv=document.createElement('div');
@@ -46,6 +47,12 @@ function addToList(){
     }
     arr.push(obj);
     localStorage.setItem('my-todo',JSON.stringify(arr));
+
+    // adding the remove button
+    const removeButton=document.createElement('button');
+    removeButton.innerText='[x]';
+    removeButton.classList.add('remove-button');
+    li.append(removeButton);
     
 }
 
@@ -91,6 +98,17 @@ function sortList(){
     }
 }
 
+// function remove(event){
+//   if(event.target.className !== 'remove-button'){
+//     return ;
+// }
+// let panel=event.target.closest('.pane');
+// panel.remove();
+// }
+
+
+
+
 // test
 //   let newArr=[
 //       {
@@ -122,3 +140,13 @@ function sortList(){
 
 
 // end of test
+const container=document.getElementById('view-section');
+container.addEventListener('click', remove);
+
+function remove(event){
+    if(event.target.className !== 'remove-button'){
+        return ;
+    }
+    let panel=event.target.closest('.pane');
+    panel.remove();
+}
