@@ -149,4 +149,6 @@ function remove(event){
     }
     let panel=event.target.closest('.pane');
     panel.remove();
+    counter--;
+    counterDiv.innerText='TODO: '+counter;
 }

@@ -16,6 +16,7 @@
   padding: 10px 20px 10px;
   border-top: solid 2px #c4df9b;
   position: relative;
+  list-style-type: none;
 }
 body {
   margin: 10px auto;
