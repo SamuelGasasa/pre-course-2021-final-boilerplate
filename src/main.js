@@ -5,7 +5,7 @@ const input=document.getElementById('text-input');
 const counterDiv=document.getElementById('counter');
 const list=document.getElementById('todoList');
 const sortButton=document.getElementById('sort-button');
-sortButton.addEventListener('click',sortList)
+sortButton.addEventListener('click',sortList);
 // let nano=new Date();
 // alert(nano.getSeconds());
 let counter=0;
@@ -73,7 +73,7 @@ function createDate(date) {
 // taken!
 function sortList(){
     let i, switching, b, shouldSwitch;
-    // list = document.getElementById("id01");
+
     switching = true;
     /* Make a loop that will continue until
     no switching has been done: */
@@ -88,7 +88,7 @@ function sortList(){
         /* check if the next item should
         switch place with the current item: */
         
-        if (Number(b[i].innerHTML) > Number(b[i + 1].innerHTML)) {
+        if (Number(b[i].innerHTML) < Number(b[i + 1].innerHTML)) {
           /* if next item is numerically
           lower than current item, mark as a switch
           and break the loop: */
