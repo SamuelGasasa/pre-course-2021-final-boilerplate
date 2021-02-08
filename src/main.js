@@ -6,14 +6,15 @@ const counterDiv=document.getElementById('counter');
 const list=document.getElementById('todoList');
 const sortButton=document.getElementById('sort-button');
 sortButton.addEventListener('click',sortList);
-// let nano=new Date();
-// alert(nano.getSeconds());
 let counter=0;
+const selectPriority= document.getElementById('priority-selector');
 let arr=[];
 
 function addToList(){
-    let prio=document.getElementById('priority-selector').value;
+    let prio=selectPriority.value;
     let inputText=input.value;
+
+    // alert the user if no priority select or no text written 
     if(!inputText){
       alert('please enter text');
       return ;
@@ -22,8 +23,10 @@ function addToList(){
       alert('please select priority');
       return ;
     }
+
+    // create all the element that will be added to html and add classes to them
     let li=document.createElement('li');
-    li.classList.add('pane');
+    li.classList.add('panel');
     let textDiv=document.createElement('div');;
     let containerDiv=document.createElement('div');
     let dateDiv=document.createElement('div');
@@ -43,11 +46,12 @@ function addToList(){
     containerDiv.append(textDiv);
     input.value='';
     input.focus();
-    // alert();
     counter++;
     counterDiv.innerText='TODO: '+counter;
     li.append(containerDiv);
     list.append(li);
+
+    // saves the the todo list in object in local storage
     let obj={
       "text":inputText,
       "priority":prio,
@@ -62,6 +66,8 @@ function addToList(){
     removeButton.classList.add('remove-button');
     li.append(removeButton);
     
+    // reset the select tag
+    selectPriority.value="";
 }
 
 // create SQL date format
@@ -70,7 +76,7 @@ function createDate(date) {
     newDate=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+ date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
     return newDate;
 }
-// taken!
+// taken from the the internet and add adjustment !
 function sortList(){
     let i, switching, b, shouldSwitch;
 
@@ -106,56 +112,16 @@ function sortList(){
     }
 }
 
-// function remove(event){
-//   if(event.target.className !== 'remove-button'){
-//     return ;
-// }
-// let panel=event.target.closest('.pane');
-// panel.remove();
-// }
 
-
-
-
-// test
-//   let newArr=[
-//       {
-//           "text": 'An example to-do',
-//           "priority": "1",
-//           "date": 1611662776177
-//       },
-//       {
-//           "text": "A second example to-do",
-//           "priority": "4",
-//           "date": 1611661776177
-//       }
-//   ]
-
-  
-//   localStorage.setItem('local',JSON.stringify(newArr));
-//   let stam=localStorage.getItem('local');
-//   let js=JSON.parse(stam);
-//   console.log(js);
-// //   for(var i =0; i < localStorage.length; i++){
-// //     console.log(localStorage.getItem(localStorage.key(i)[text]));
-// //  }
-//   // console.log(newArr[0].text);
-
-
-
-
-
-
-
-// end of test
 const container=document.getElementById('view-section');
 container.addEventListener('click', remove);
 
+// remove function 
 function remove(event){
     if(event.target.className !== 'remove-button'){
         return ;
     }
-    let panel=event.target.closest('.pane');
+    let panel=event.target.closest('.panel');
     panel.remove();
     counter--;
     counterDiv.innerText='TODO: '+counter;
