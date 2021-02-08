@@ -66,13 +66,6 @@ function addToList(){
     removeButton.classList.add('remove-button');
     li.append(removeButton);
     
-    //adding edit button
-    const editItem=document.createElement('span');
-    editItem.innerText='edit';
-    editItem.classList.add('editItem');
-    li.append(editItem);
-
-
     // reset the select tag
     selectPriority.value="";
 }
@@ -134,17 +127,7 @@ function remove(event){
     counterDiv.innerText='TODO: '+counter;
 }
 
-//edit function
-function remove(event){
-  if(event.target.className !== 'editItem'){
-      return ;
-  }
-  let panel=event.target.closest('.todo-text');
-  panel.;
-  counter--;
-  counterDiv.innerText='TODO: '+counter;
-}
-
+//deletes all the list
 const removeAll=document.getElementById('removeAll-button');
 removeAll.addEventListener('click', deleteList);
 function deleteList(){
@@ -154,4 +137,5 @@ function deleteList(){
   }
   counter=0;
   counterDiv.innerText='TODO: '+counter;
+  localStorage.clear();
 }
