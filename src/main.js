@@ -38,7 +38,7 @@ function addToList(){
     textDiv.innerText=inputText;
     let date=new Date();
     let tarich=createDate(date);
-    dateDiv.innerText=tarich;
+    dateDiv.innerText='created at: '+ tarich;
     priorityDiv.innerText=prio;
     ViewSection.append(containerDiv);
     containerDiv.append(priorityDiv);
@@ -66,6 +66,13 @@ function addToList(){
     removeButton.classList.add('remove-button');
     li.append(removeButton);
     
+    //adding edit button
+    const editItem=document.createElement('span');
+    editItem.innerText='edit';
+    editItem.classList.add('editItem');
+    li.append(editItem);
+
+
     // reset the select tag
     selectPriority.value="";
 }
@@ -125,6 +132,17 @@ function remove(event){
     panel.remove();
     counter--;
     counterDiv.innerText='TODO: '+counter;
+}
+
+//edit function
+function remove(event){
+  if(event.target.className !== 'editItem'){
+      return ;
+  }
+  let panel=event.target.closest('.todo-text');
+  panel.;
+  counter--;
+  counterDiv.innerText='TODO: '+counter;
 }
 
 const removeAll=document.getElementById('removeAll-button');
