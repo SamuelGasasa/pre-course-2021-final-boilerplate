@@ -12,6 +12,16 @@ let counter=0;
 let arr=[];
 
 function addToList(){
+    let prio=document.getElementById('priority-selector').value;
+    let inputText=input.value;
+    if(!inputText){
+      alert('please enter text');
+      return ;
+    }
+    if(!prio){
+      alert('please select priority');
+      return ;
+    }
     let li=document.createElement('li');
     li.classList.add('pane');
     let textDiv=document.createElement('div');;
@@ -22,12 +32,10 @@ function addToList(){
     textDiv.classList.add('todo-text');
     dateDiv.classList.add('todo-created-at');
     priorityDiv.classList.add('todo-priority');
-    let inputText=input.value;
     textDiv.innerText=inputText;
     let date=new Date();
     let tarich=createDate(date);
     dateDiv.innerText=tarich;
-    let prio=document.getElementById('priority-selector').value;
     priorityDiv.innerText=prio;
     ViewSection.append(containerDiv);
     containerDiv.append(priorityDiv);
@@ -49,7 +57,7 @@ function addToList(){
     localStorage.setItem('my-todo',JSON.stringify(arr));
 
     // adding the remove button
-    const removeButton=document.createElement('button');
+    const removeButton=document.createElement('span');
     removeButton.innerText='[x]';
     removeButton.classList.add('remove-button');
     li.append(removeButton);
