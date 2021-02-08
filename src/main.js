@@ -126,3 +126,14 @@ function remove(event){
     counter--;
     counterDiv.innerText='TODO: '+counter;
 }
+
+const removeAll=document.getElementById('removeAll-button');
+removeAll.addEventListener('click', deleteList);
+function deleteList(){
+  const panels=document.querySelectorAll('.panel');
+  for(let pan of panels){
+    pan.remove();
+  }
+  counter=0;
+  counterDiv.innerText='TODO: '+counter;
+}
