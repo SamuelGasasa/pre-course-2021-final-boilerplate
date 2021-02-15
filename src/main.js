@@ -10,6 +10,9 @@ let counter=0;
 const selectPriority= document.getElementById('priority-selector');
 let todoList={'todo-list':[]};
 let firstSend=true;
+let spin=document.getElementById('spinner');
+spin.hidden=true;
+
 
 function addToList(){
     let prio=selectPriority.value;
@@ -142,6 +145,22 @@ function deleteList(){
 
 
 async function updateJsonbin(todolist){
-  await fetch("https://api.jsonbin.io/b/602aa29e6b568373f8c2315d",{method:"put",headers: {"Content-Type":"application/json",
-  "secret-key":"$2b$10$/HV8hHT2SnSF3gPqPZIQfOx/igL..U.WKV.PHnEqc.N3Jz5UZWrge","versioning": "false"},body: JSON.stringify(todolist)});
+  spin.hidden=false;
+    await fetch("https://api.jsonbin.io/b/602a82116b568373f8c21928", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(todoList)
+    })
+        .then(resp => {
+                return resp.json()
+        })
+        .then(dataJson => {
+            dataJson=dataToSend;
+            console.log(dataJson);
+        })
+        .catch(err => {
+            if (err === "server") return
+            console.log(err)
+        })
+  spin.hidden=true;
 }
