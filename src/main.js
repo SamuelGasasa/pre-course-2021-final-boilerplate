@@ -8,12 +8,12 @@ const sortButton=document.getElementById('sort-button');
 sortButton.addEventListener('click',sortList);
 let counter=0;
 const selectPriority= document.getElementById('priority-selector');
-let arr=[];
+let todoList={'todo-list':[]};
+let firstSend=true;
 
 function addToList(){
     let prio=selectPriority.value;
     let inputText=input.value;
-
     // alert the user if no priority select or no text written 
     if(!inputText){
       alert('please enter text');
@@ -57,9 +57,9 @@ function addToList(){
       "priority":prio,
       "date":tarich
     }
-    arr.push(obj);
-    localStorage.setItem('my-todo',JSON.stringify(arr));
-
+    todoList["todo-list"].push(obj);
+    localStorage.setItem('my-todo',JSON.stringify(todoList));
+    updateJsonbin(todoList);
     // adding the remove button
     const removeButton=document.createElement('span');
     removeButton.innerText='[x]';
@@ -139,3 +139,11 @@ function deleteList(){
   counterDiv.innerText='TODO: '+counter;
   localStorage.clear();
 }
+
+
+async function updateJsonbin(todolist){
+  await fetch("https://api.jsonbin.io/b/602aa29e6b568373f8c2315d",{method:"put",headers: {"Content-Type":"application/json",
+  "secret-key":"$2b$10$/HV8hHT2SnSF3gPqPZIQfOx/igL..U.WKV.PHnEqc.N3Jz5UZWrge","versioning": "false"},body: JSON.stringify(todolist)});
+}
+
+//need to update screen according to the jsonbin and local storage
