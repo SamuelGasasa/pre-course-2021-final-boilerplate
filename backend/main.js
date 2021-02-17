@@ -37,11 +37,17 @@ app.post('/b',(req,res)=>{
     }
 });
 
-app.put('/put',(req,res)=>{
-    let file=fs.readFileSync('./backend/storage/test.json');
-    let stringFile=JSON.parse(file);
-    console.log(stringFile.lastName);
-    res.send('hi');
+app.put('/b/:id',(req,res)=>{
+    const {id}=req.params;
+    try{
+        let file=fs.readFileSync(`./backend/storage/test${id}.json`);
+        let stringFile=JSON.parse(file);
+        console.log(stringFile.lastName);
+        res.send('hi');
+    }
+    catch(e){
+      res.send(`couldn't find the list ${id} you were looking for`);  
+    }
 });
 
 app.delete('/delete',(req,res)=>{
